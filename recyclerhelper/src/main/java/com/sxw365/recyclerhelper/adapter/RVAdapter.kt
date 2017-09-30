@@ -41,7 +41,7 @@ open class RVAdapter<Data>(protected val list: MutableList<Data>?) : RecyclerVie
         } else super.getItemViewType(position)
     }
 
-    fun setProcessor(processor: TypeProcessor?) {
+    fun setTypeProcessor(processor: TypeProcessor?) {
         if (processor == null) {
             this.processor = TypeProcessorWrapper()
         } else {

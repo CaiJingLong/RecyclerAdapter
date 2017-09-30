@@ -2,6 +2,7 @@ package com.sxw365.recycleradapterhelper;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,9 +22,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    private List<Object> list = new ArrayList<>();
+    private List<StringWrapper> list = new ArrayList<>();
     private SwipeRefreshLayout refreshLayout;
-    private RVAdapter<Object> adapter;
+    private RVAdapter<StringWrapper> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         };
         adapter.addType(1, new String1Cell() {
             @Override
-            public void bindData(RVHolder holder, int position) {
-                Object o = list.get(position);
-                if (o instanceof StringWrapper) {
-                    holder.getTextView(R.id.tv_name).setText(((StringWrapper) o).getContent());
+            public void bindData(@NonNull RVHolder holder, int position) {
+                StringWrapper o = list.get(position);
+                if (o != null) {
+                    holder.getTextView(R.id.tv_name).setText(o.getContent());
                 }
             }
         });
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         adapter.addType(2, new String2Cell());
         adapter.addType(3, new String2Cell());
         adapter.addType(4, new String2Cell());
-        adapter.setProcessor(new RVAdapter.TypeProcessor() {
+        adapter.setTypeProcessor(new RVAdapter.TypeProcessor() {
             @Override
             public int type(int position) {
                 Object o = list.get(position);
