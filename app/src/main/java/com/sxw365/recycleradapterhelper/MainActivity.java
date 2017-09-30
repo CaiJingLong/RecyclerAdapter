@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             @Override
             public int type(int position) {
                 Object o = list.get(position);
-                if (o instanceof StringWrapper) {
+                if (o != null) {
                     return ((StringWrapper) o).getType();
                 }
                 return 0;

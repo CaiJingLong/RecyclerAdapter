@@ -10,8 +10,7 @@ import android.widget.TextView
 /**
  * Created by cai on 2017/9/29.
  */
-
-class RVHolder(val cell: Cell, view: View) : RecyclerView.ViewHolder(view) {
+open class RVHolder(val cell: Cell, view: View) : RecyclerView.ViewHolder(view) {
 
     private val views = SparseArray<View>()
 
